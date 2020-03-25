@@ -11,6 +11,8 @@ import com.example.cateringProject.domain.Category;
 import com.example.cateringProject.domain.CategoryRepository;
 import com.example.cateringProject.domain.Product;
 import com.example.cateringProject.domain.ProductRepository;
+import com.example.cateringProject.domain.User;
+import com.example.cateringProject.domain.UserRepository;
 
 @SpringBootApplication
 public class CateringProjectApplication {
@@ -21,9 +23,9 @@ public class CateringProjectApplication {
 		SpringApplication.run(CateringProjectApplication.class, args);
 	}
 	
-	//Luodaan muutama esimerkki tuote ja tuotteiden kategoriat
+	//Luodaan muutama esimerkki tuote, tuotteiden kategoriat sekä pari esimerkki käyttäjää
 	@Bean
-	public CommandLineRunner exampleProduct(ProductRepository repository, CategoryRepository crepository) {
+	public CommandLineRunner exampleProduct(ProductRepository repository, CategoryRepository crepository, UserRepository urepository) {
 		return(args) ->{
 			log.info("save a couple of categories");
 			crepository.save(new Category("Catering"));
@@ -40,6 +42,14 @@ public class CateringProjectApplication {
 			repository.save(new Product("Pasteija", 2.00, crepository.findByName("Hyvät ideat").get(0)));
 			
 			System.out.println("Tuotteet lisätty");
+			
+			log.info("save a couple of users");
+			urepository.save(new User("user", "$2y$12$UY92f4lCumIk90xY6Z9ZMODKPmm8sOG5cVfAnNEeMEocvTv0oMN7C",
+					"USER"));
+			urepository.save(new User("admin", "$2y$12$5piFyCJx6vDwNTDuk.6FWe0rLgzz0C1sD2h/RsqS1/YCDM7rpGMwW",
+					"ADMIN"));
+			
+			System.out.println("Käyttäjät lisätty");
 			
 			//Logataan konsoliin tuotteista pieni teksti pätkä
 			log.info("Fetch all products");

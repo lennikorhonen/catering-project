@@ -7,23 +7,35 @@
 	th:href="@{css/css/bootstrap.min.css}" />
 </head>
 <body>
-<h1>Tuotteet</h1>
-<table class="table table-striped">
-<tr>
-<th>Nimi</th>
-<th>Hinta</th>
-<th>Kategoria</th>
-<th></th>
-<th></th>
-</tr>
-<tr th:each="product : ${products}">
-    <td th:text="${product.name}"></td>
-    <td th:text="${product.price}"></td>
-    <td th:text="${product.category.name}"></td>
-    <td><a th:href="@{edit/{id}(id=${product.id})}" class="btn btn-primary">Muokkaa</a></td>
-    <td><a th:href="@{delete/{id}(id=${product.id})}" class="btn btn-danger">Poista</a></td>
-</tr>
-</table>
-<a href="/add" class="btn btn-success">Add product</a>
+	<div class="col-md-4">
+		<h3 th:inline="text">Welcome
+			[[${#httpServletRequest.remoteUser}]]</h3>
+	</div>
+	<div class="col-md-4" style="padding: 20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign out" class="btn btn-sm btn-danger"/>
+		</form>
+	</div>
+	<h1>Tuotteet</h1>
+	<!-- Taulukko tuotteita varten -->
+	<table class="table table-striped">
+		<tr>
+			<th>Nimi</th>
+			<th>Hinta</th>
+			<th>Kategoria</th>
+			<th sec:authorize="hasAuthority('ADMIN')"></th> <!-- muokkaus ja poisto toiminnot vain admin roolin omaavalle -->
+			<th sec:authorize="hasAuthority('ADMIN')"></th>
+		</tr>
+		<tr th:each="product : ${products}">
+			<td th:text="${product.name}"></td>
+			<td th:text="${product.price}"></td>
+			<td th:text="${product.category.name}"></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{edit/{id}(id=${product.id})}"
+				class="btn btn-primary">Muokkaa</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{delete/{id}(id=${product.id})}"
+				class="btn btn-danger">Poista</a></td>
+		</tr>
+	</table>
+	<a href="/add" class="btn btn-success">Add product</a>
 </body>
 </html>

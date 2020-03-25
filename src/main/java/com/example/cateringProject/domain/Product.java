@@ -5,21 +5,27 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
+//Luodaan Tuote luokka
 @Entity
 public class Product {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO) //Tuotteiden tietokanta id on automaattisesti luotu
 	public Long id;
 	public String name;
 	public double price;
 	
 	@ManyToOne
-	@JoinColumn(name = "categoryid")
+	@JsonManagedReference //RESTful palvelun tietokanta viite
+	@JoinColumn(name = "categoryid") //Monta yhteen tietokanta yhteys tuotteiden ja kategorioiden välille
 	private Category category;
+	
+	//Luokan super metodit
 	
 	public Product () {
 		super();
@@ -31,6 +37,8 @@ public class Product {
 		this.price = price;
 		this.category = category;
 	}
+	
+	//getterit ja setterit tuotteiden lisäämistä ja lukemista varten
 
 	public Category getCategory() {
 		return category;
@@ -63,6 +71,8 @@ public class Product {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
+	//toString metodi debuggausta varten
 
 	@Override
 	public String toString() {

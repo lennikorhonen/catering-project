@@ -9,15 +9,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+//luodaan kategoria luokka
 @Entity
 public class Category {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Long categoryId;
+	@GeneratedValue(strategy = GenerationType.AUTO) //Kategorian tietokanta id on automaattisesti luotu
+	public Long categoryId; 
 	private String name;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy ="category")
+	@JsonBackReference //RESTful palvelun tietokanta viite
+	@OneToMany(cascade = CascadeType.ALL, mappedBy ="category") //Kerrotaan softalle, että tällä luokalla on yksi moneen yhteys
 	private List<Product> product;
+	
+	//luokan super metodit
 	
 	public Category() {
 		super();
@@ -27,6 +33,8 @@ public class Category {
 		super();
 		this.name = name;
 	}
+	
+	//Luokan getterit ja setterit kategorioiden luomista ja lukemista varten
 	
 	public List<Product> getProduct() {
 		return product;

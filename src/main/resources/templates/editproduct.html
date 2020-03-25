@@ -9,6 +9,7 @@
 <body>
 	<h1>Muokkaa tuotetta</h1>
 	<div>
+	<!-- Html lomake tuotteen muokkaamista varten -->
 	<form th:object="${product}" th:action="@{../save}" action="#" method="post">
 	<label for="id"></label>
 	<input type="hidden" id="id" th:field="*{id}" class="form-control"/>
