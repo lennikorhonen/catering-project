@@ -11,12 +11,17 @@
 		<h3 th:inline="text">Welcome
 			[[${#httpServletRequest.remoteUser}]]</h3>
 	</div>
-	<div class="col-md-4" style="padding: 20px 0">
+	<div class="col-md-4" style="padding: 10px 5px">
 		<form th:action="@{/logout}" method="post">
 			<input type="submit" value="Sign out" class="btn btn-sm btn-danger"/>
 		</form>
 	</div>
-	<h1>Tuotteet</h1>
+	<div class="col-md-4" style="padding: 10px 5px">
+		<form th:action="@{/customerlist}" method="get">
+			<input type="submit" value="Asiakkaat" class="btn btn-sm btn-primary"/>
+		</form>
+	</div>
+	<h1>Tuotteet <a href="/add" class="btn btn-success">Lisää tuote</a></h1>
 	<!-- Taulukko tuotteita varten -->
 	<table class="table table-striped">
 		<tr>
@@ -36,6 +41,5 @@
 				class="btn btn-danger">Poista</a></td>
 		</tr>
 	</table>
-	<a href="/add" class="btn btn-success">Add product</a>
 </body>
 </html>

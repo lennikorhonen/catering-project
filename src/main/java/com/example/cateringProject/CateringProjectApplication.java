@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 
 import com.example.cateringProject.domain.Category;
 import com.example.cateringProject.domain.CategoryRepository;
+import com.example.cateringProject.domain.Customer;
+import com.example.cateringProject.domain.CustomerRepository;
 import com.example.cateringProject.domain.Product;
 import com.example.cateringProject.domain.ProductRepository;
 import com.example.cateringProject.domain.User;
@@ -25,13 +27,13 @@ public class CateringProjectApplication {
 	
 	//Luodaan muutama esimerkki tuote, tuotteiden kategoriat sekä pari esimerkki käyttäjää
 	@Bean
-	public CommandLineRunner exampleProduct(ProductRepository repository, CategoryRepository crepository, UserRepository urepository) {
+	public CommandLineRunner exampleProduct(ProductRepository repository, CategoryRepository crepository, UserRepository urepository, CustomerRepository curepository) {
 		return(args) ->{
 			log.info("save a couple of categories");
 			crepository.save(new Category("Catering"));
 			crepository.save(new Category("Kaffepaku"));
 			//Hyvät ideat on yrityksen työntekijälle joka voi matkalla ollessaan lisätä tuotteita ja kokeilla
-			//niitä kun ei ole enään tien päällä
+			//niitä kun ei ole enää tien päällä
 			crepository.save(new Category("Hyvät ideat"));
 			
 			System.out.println("Kategoriat lisätty");
@@ -40,8 +42,17 @@ public class CateringProjectApplication {
 			repository.save(new Product("Pulla", 2.00, crepository.findByName("Kaffepaku").get(0)));
 			repository.save(new Product("Kakku pala", 3.50, crepository.findByName("Catering").get(0)));
 			repository.save(new Product("Pasteija", 2.00, crepository.findByName("Hyvät ideat").get(0)));
+			repository.save(new Product("Catering paketti 1", 75, crepository.findByName("Catering").get(0)));
+			repository.save(new Product("Catering paketti 2", 125, crepository.findByName("Catering").get(0)));
+			repository.save(new Product("Catering paketti 3", 140, crepository.findByName("Catering").get(0)));
 			
 			System.out.println("Tuotteet lisätty");
+			
+			log.info("save couple example customers");
+			curepository.save(new Customer("Faijan leivät", "Matti" , "Meikäläinen", "matti.meikalainen@faija.fi",
+					"Leipätie 5", repository.findByName("Catering paketti 3").get(0)));
+			curepository.save(new Customer("Mutsin kakut", "Maija" , "Moilanen", "maija.moilanen@mutsi.fi",
+					"Kakkutie 7", repository.findByName("Catering paketti 1").get(0)));
 			
 			log.info("save a couple of users");
 			urepository.save(new User("user", "$2y$12$UY92f4lCumIk90xY6Z9ZMODKPmm8sOG5cVfAnNEeMEocvTv0oMN7C",
