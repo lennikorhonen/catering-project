@@ -20,6 +20,7 @@ public class Customer {
 	public String lastName;
 	public String mail;
 	public String address;
+	public int amount;
 	
 	@ManyToOne
 	@JsonManagedReference
@@ -30,13 +31,15 @@ public class Customer {
 		super();
 	}
 	
-	public Customer(String company, String firstName, String lastName, String mail, String address, Product product) {
+	public Customer(String company, String firstName, String lastName, String mail, String address,
+			int amount ,Product product) {
 		super();
 		this.company = company;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.mail = mail;
 		this.address = address;
+		this.amount = amount;
 		this.product = product;
 	}
 
