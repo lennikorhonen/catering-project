@@ -1,11 +1,17 @@
 package com.example.cateringProject;
 
+import java.util.Collections;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.cateringProject.domain.Category;
 import com.example.cateringProject.domain.CategoryRepository;
@@ -32,7 +38,7 @@ public class CateringProjectApplication {
 			
 			//Koska käytämme postgre tietokantaa täytyy käynnistäessä ensin poistaa esimerkki tiedot
 			//ja sen jälkeen lisätä ne uudestaan
-			repository.deleteAll();
+			/*repository.deleteAll();
 			crepository.deleteAll();
 			curepository.deleteAll();
 			urepository.deleteAll();
@@ -68,7 +74,7 @@ public class CateringProjectApplication {
 			urepository.save(new EndUser("admin", "$2y$12$5piFyCJx6vDwNTDuk.6FWe0rLgzz0C1sD2h/RsqS1/YCDM7rpGMwW",
 					"ADMIN"));
 			
-			System.out.println("Käyttäjät lisätty");
+			System.out.println("Käyttäjät lisätty");*/
 			
 			//Logataan konsoliin tuotteista pieni teksti pätkä
 			log.info("Fetch all products");

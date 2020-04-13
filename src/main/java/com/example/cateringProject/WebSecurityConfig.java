@@ -15,26 +15,28 @@ import com.example.cateringProject.web.UserDetailsServiceImpl;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	//Injektoidaan luokka UserDetailsServiceImpl
+	@Autowired
+	private UserDetailsServiceImpl userDetailsService;
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.authorizeRequests().antMatchers("/css/**").permitAll() //css käytössä vaikka ei ole kirjautunut
 		.and()
-		.authorizeRequests()
-			.anyRequest().authenticated()
-			.and()
-	.formLogin()
-		.defaultSuccessUrl("/productlist") //Onnistuneessa kirjautumisessa ohjataan suoraan productlist sivulle
-		.permitAll()
+		.authorizeRequests().antMatchers("/signup", "/saveuser").permitAll()
 		.and()
+		.authorizeRequests().anyRequest().authenticated()
+		.and()
+	.formLogin()
+			.loginPage("/login")
+			.defaultSuccessUrl("/productlist") //Onnistuneessa kirjautumisessa ohjataan suoraan productlist sivulle
+			.permitAll()
+			.and()
 	.logout()
 		.permitAll()
 		.invalidateHttpSession(true); //Kirjautuessa ulos mitätöidään http istunto
 	}
-	
-	//Injektoidaan luokka UserDetailsServiceImpl
-	@Autowired
-	private UserDetailsServiceImpl userDetailsService;
 	
 	//Muunnetaan salasana koodikielelle
 	@Autowired
