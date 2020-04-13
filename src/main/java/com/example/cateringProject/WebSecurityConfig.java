@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 		.authorizeRequests().antMatchers("/css/**").permitAll() //css käytössä vaikka ei ole kirjautunut
 		.and()
-		.authorizeRequests().antMatchers("/signup", "/saveuser").permitAll()
+		.authorizeRequests().antMatchers("/", "/error" ,"/signup", "/saveuser").permitAll()
 		.and()
 		.authorizeRequests().anyRequest().authenticated()
 		.and()
