@@ -31,7 +31,7 @@ public class CateringProjectApplication {
 			
 			//Koska käytämme postgre tietokantaa täytyy käynnistäessä ensin poistaa esimerkki tiedot
 			//ja sen jälkeen lisätä ne uudestaan
-			repository.deleteAll();
+			/*repository.deleteAll();
 			crepository.deleteAll();
 			curepository.deleteAll();
 			urepository.deleteAll();
@@ -67,7 +67,7 @@ public class CateringProjectApplication {
 			urepository.save(new EndUser("admin", "$2y$12$5piFyCJx6vDwNTDuk.6FWe0rLgzz0C1sD2h/RsqS1/YCDM7rpGMwW",
 					"ADMIN"));
 			
-			System.out.println("Käyttäjät lisätty");
+			System.out.println("Käyttäjät lisätty");*/
 			
 			//Logataan konsoliin tuotteista pieni teksti pätkä
 			log.info("Fetch all products");
