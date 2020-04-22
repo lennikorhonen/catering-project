@@ -3,12 +3,10 @@
 <head>
 <title>Customerlist</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link type="text/css" rel="stylesheet"
-	href="../css/bootstrap.min.css"
-	th:href="@{../css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css" th:href="@{../css/bootstrap.min.css}" />
 </head>
 <body>
-	<h1>Lisää asiakas</h1>
+	<h1>Muokkaa asiakkaan tietoja</h1>
 	<div>
 		<!-- Html lomake tuotteen lisäämistä varten -->
 		<form th:object="${customer}" th:action="@{../savecustomer}"
@@ -34,9 +32,6 @@
 					th:each="product:${product}" th:value="${product.id}"
 					th:text="${product.name}"></option>
 			</select>
-			<div style="clear: both; display: block; height: 10px;"></div>
-			<label for="amount">Määrä</label><input type="text" id="amount"
-				th:field="*{amount}">
 			<div style="clear: both; display: block; height: 10px;"></div>
 			<input type="submit" value="Tallenna" class="btn btn-primary" />
 		</form>
