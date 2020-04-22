@@ -24,12 +24,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 		.authorizeRequests().antMatchers("/css/**").permitAll() //css käytössä vaikka ei ole kirjautunut
 		.and()
-		.authorizeRequests().antMatchers("/", "/error" ,"/signup", "/saveuser").permitAll()
+		.authorizeRequests().antMatchers("/", "/error" ,"/signup", "/saveuser").permitAll() //myös nuo käytössä vaikka ei ole kirjautunut
 		.and()
 		.authorizeRequests().anyRequest().authenticated()
 		.and()
 	.formLogin()
-			.loginPage("/login")
+			.loginPage("/login") //ennalta määrätty kirjautumis sivu
 			.defaultSuccessUrl("/productlist") //Onnistuneessa kirjautumisessa ohjataan suoraan productlist sivulle
 			.permitAll()
 			.and()

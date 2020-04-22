@@ -20,25 +20,28 @@ public class UserController {
 	@Autowired
 	private EndUserRepository repository;
 	
+	//Polku käyttäjän luonti sivulle
 	@RequestMapping(value = "signup")
 	public String addEndUser(Model model) {
 		model.addAttribute("signupform", new SignupForm());
 		return "signup";
 	}
 	
+	//Polku uuden käyttäjän tallennus sivulle
 	@RequestMapping(value = "saveuser", method = RequestMethod.POST)
 	public String save(@Valid @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult) {
 		if(!bindingResult.hasErrors()) {
 			if(signupForm.getPassword().equals(signupForm.getPasswordCheck())) {
 				String pwd =signupForm.getPassword();
 				BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
-				String hashPwd = bc.encode(pwd);
+				String hashPwd = bc.encode(pwd); //Salasanan cryptaus
 				
 				EndUser newUser = new EndUser();
 				newUser.setPasswordHash(hashPwd);
 				newUser.setUsername(signupForm.getUsername());
 				newUser.setRole("USER");
 				
+				//Käyttäjänimen yksilöllisyyden tarkistus
 				if(repository.findByUsername(signupForm.getUsername()) == null) {
 					repository.save(newUser);
 				} else {
@@ -50,6 +53,6 @@ public class UserController {
 				return "signup";
 			}
 		}
-		return "redirect:/login";
+		return "redirect:/login"; //Ohjataan takaisin kirjautumis sivulle
 	}
 }

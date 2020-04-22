@@ -29,8 +29,8 @@ public class CateringProjectApplication {
 	public CommandLineRunner exampleProduct(ProductRepository repository, CategoryRepository crepository, EndUserRepository urepository, CustomerRepository curepository) {
 		return(args) ->{
 			
-			//Koska käytämme postgre tietokantaa täytyy käynnistäessä ensin poistaa esimerkki tiedot
-			//ja sen jälkeen lisätä ne uudestaan
+			//Koska käytämme postgre tietokantaa täytyy CommandLineRunnerin funktiot on kommentoitu ulos, jotta
+			//ne eivät monistuisi tietokantaan
 			/*repository.deleteAll();
 			crepository.deleteAll();
 			curepository.deleteAll();

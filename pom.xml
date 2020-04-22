@@ -69,7 +69,7 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-		<!-- <dependency>
+		<!-- <dependency> (oli testi tiedostoja varten)
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>

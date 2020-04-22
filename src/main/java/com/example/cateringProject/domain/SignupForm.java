@@ -19,6 +19,8 @@ public class SignupForm {
 	 
 	 @NotEmpty
 	 private String role = "USER";
+	 
+	 //Luokan getterit ja setterit
 
 	public String getUsername() {
 		return username;

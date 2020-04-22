@@ -6,7 +6,7 @@ import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
+@Controller//Customoitu virhe ilmoitus
 public class CustomErrorController implements ErrorController{
 	
 	private static final Logger log = LoggerFactory.getLogger(CustomErrorController.class);

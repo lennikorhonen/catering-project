@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Customer {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO) //Automaattisesti luotu asiakas id
 	public Long id;
 	public String company;
 	public String firstName;
@@ -23,9 +23,11 @@ public class Customer {
 	public int amount;
 	
 	@ManyToOne
-	@JsonManagedReference
-	@JoinColumn(name = "productid")
+	@JsonManagedReference //Restful tietokanta viittaus
+	@JoinColumn(name = "productid") //Kerrotaan minkä taulun idllä liittyy
 	private Product product;
+	
+	//Luokan metodit
 	
 	public Customer() {
 		super();
@@ -42,6 +44,8 @@ public class Customer {
 		this.amount = amount;
 		this.product = product;
 	}
+	
+	//Luokan getterit ja setterit
 
 	public Product getProduct() {
 		return product;
