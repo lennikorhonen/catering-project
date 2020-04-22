@@ -26,14 +26,15 @@
 			<div style="clear: both; display: block; height: 10px;"></div>
 			<label for="address">Osoite</label><input type="text" id="address"
 				th:field="*{address}">
-			<label for="amount">Määrä</label><input type="text" id="amount"
-				th:field="*{amount}">
 			<div style="clear: both; display: block; height: 10px;"></div>
 			<label for="product">Tilaus</label><select id="product"
 				th:field="*{product}" class="form-control"><option
 					th:each="product:${product}" th:value="${product.id}"
 					th:text="${product.name}"></option>
 			</select>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="amount">Määrä</label><input type="text" id="amount"
+				th:field="*{amount}">
 			<div style="clear: both; display: block; height: 10px;"></div>
 			<input type="submit" value="Lisää" class="btn btn-primary" />
 		</form>
